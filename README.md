@@ -40,5 +40,3 @@ services:
 
 # TODO
 * Properly test everything
-
-* Make sensor names more friendly
