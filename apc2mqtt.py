@@ -109,7 +109,7 @@ INTERVAL = float(os.getenv('INTERVAL', 15))
 UPS_ALIAS = os.getenv('UPS_ALIAS','apc').lower().replace(" ", "_").replace('.', '_')
 APCUPSD_HOST = os.getenv('APCUPSD_HOST','127.0.0.1')
 MQTT_QOS = int(os.getenv('MQTT_QOS', 1))
-DISCOVERY_TOPIC = HOMEASSISTANT_PREFIX + '/sensor/apc/{}/config'
+DISCOVERY_TOPIC = HOMEASSISTANT_PREFIX + '/sensor/' + MQTT_TOPIC_PREFIX + '/{}/config'
 
 mqtt = paho.Client()
 mqtt.username_pw_set(username=MQTT_USER,password=MQTT_PASSWORD)
