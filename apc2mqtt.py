@@ -148,7 +148,13 @@ def send_homeassistant_registration(sensordata):
         'unit_of_measurement': sensordata[1],
         'payload_available': 'online',
         'payload_not_available': 'offline',
-        'state_topic': f'{MQTT_TOPIC_PREFIX}/{UPS_ALIAS}_{discovery_sensorname}'
+        'state_topic': f'{MQTT_TOPIC_PREFIX}/{UPS_ALIAS}_{discovery_sensorname}',
+        'device': {
+            'identifiers': f'apc2mqtt_{UPS_ALIAS}',
+            'name': f'apc2mqtt {UPS_ALIAS} {APCUPSD_HOST}',
+            'model': f'{UPS_ALIAS} on {APCUPSD_HOST}',  # TODO get actual ups model from apcaccess data
+            'manufacturer': 'apc2mqtt'
+            }
     }
     logger.info(f'Registering {discovery_sensorname} with Home Assistant: {registration_topic}: {registration_packet}')
     mqtt_send(registration_topic, json.dumps(registration_packet), retain=True)
